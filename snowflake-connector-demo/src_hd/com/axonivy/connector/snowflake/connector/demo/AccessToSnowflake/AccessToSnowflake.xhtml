@@ -1,0 +1,230 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/frame-10-full-width.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/AccessToSnowflakeDemo')}</ui:define>
+		<ui:define name="content">
+			<h:outputStylesheet name="layouts/styles/snowflake-demo.css" />
+			<h2>#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SnowflakeSQLAPIDemo')}</h2>
+			<h:form id="form">
+				<p:tabView>
+					<p:tab title="Execute SQL Statement">
+						<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Input')}</h3>
+						<h:panelGroup styleClass="grid ui-fluid" layout="block">
+							<h:panelGroup styleClass="col-4" layout="block">
+								<p:outputLabel for="database"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Database')}" />
+								<p:selectOneMenu id="database"
+									value="#{data.sqlStatementExecution.param.database}">
+									<f:selectItems value="#{accessToSnowflakeBean.databases}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-4" layout="block">
+								<p:outputLabel for="schema"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Schema')}" />
+								<p:selectOneMenu id="schema"
+									value="#{data.sqlStatementExecution.param.schema}">
+									<f:selectItems value="#{accessToSnowflakeBean.schemas}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-4" layout="block">
+								<p:outputLabel for="table"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Table')}" />
+								<p:selectOneMenu id="table"
+									value="#{accessToSnowflakeBean.table}">
+									<f:selectItem
+										itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SelectTable')}"
+										noSelectionOption="true" />
+									<f:selectItems value="#{accessToSnowflakeBean.tables}" />
+									<p:ajax
+										listener="#{accessToSnowflakeBean.generateSqlStatement()}"
+										update="sql-statement sql-statement-hint" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-4" layout="block">
+								<p:outputLabel for="warehouse"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Warehouse')}" />
+								<p:selectOneMenu id="warehouse"
+									value="#{data.sqlStatementExecution.param.warehouse}">
+									<f:selectItems value="#{accessToSnowflakeBean.warehouses}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-4" layout="block">
+								<p:outputLabel for="role"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Role')}" />
+								<p:selectOneMenu id="role"
+									value="#{data.sqlStatementExecution.param.role}">
+									<f:selectItems value="#{accessToSnowflakeBean.roles}" />
+								</p:selectOneMenu>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-4" layout="block">
+								<div>
+									<p:outputLabel for="async"
+										value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Async')}" />
+								</div>
+								<div class=" align-content-center">
+									<p:selectBooleanCheckbox id="async"
+										value="#{data.sqlStatementExecution.param.async}" />
+								</div>
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-8" layout="block">
+								<p:outputLabel for="sql-statement"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SQLStatement')}" />
+								<p:inputTextarea id="sql-statement"
+									value="#{data.sqlStatementExecution.param.statement}" />
+								<p:outputLabel id="sql-statement-hint"
+									value="Suggestion: #{accessToSnowflakeBean.sqlStatement}" />
+								<p:message for="sql-statement" />
+							</h:panelGroup>
+
+							<h:panelGroup styleClass="col-4 align-content-center text-left"
+								layout="block">
+								<p:commandButton styleClass="w-auto" id="execute"
+									actionListener="#{logic.execute}"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/ExecuteSQLStatement')}"
+									update="execution-result" icon="pi pi-search" />
+							</h:panelGroup>
+						</h:panelGroup>
+						<br />
+						<h:panelGroup styleClass="grid ui-fluid" layout="block"
+							id="execution-result">
+							<h3 class="col-12">#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Result')}</h3>
+							<div class="col-12">
+								#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/StatementHandle')}
+								<span class="font-bold">#{data.sqlStatementExecution.resultSet.statementHandle}</span>
+							</div>
+							<div class="col-12">
+								#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Response')}
+								<span class="font-bold">
+									#{data.sqlStatementExecution.resultSet.message}</span>
+							</div>
+							<div class="ui-datatable ui-widget">
+								<h:panelGroup id="datatable"
+									styleClass="col-12 ui-datatable-tablewrapper" layout="block">
+									<table class="table-height-500">
+										<thead>
+											<tr>
+												<ui:repeat var="column"
+													value="#{data.sqlStatementExecution.resultSet.resultSetMetaData.rowType}">
+													<th class="table-header-sticky">#{column.name}</th>
+												</ui:repeat>
+											</tr>
+										</thead>
+										<tbody class="ui-datatable-data ui-widget-content">
+											<ui:repeat var="rowValue"
+												value="#{data.sqlStatementExecution.resultSet.data}">
+												<tr class="ui-widget-content">
+													<ui:repeat var="columnValue" value="#{rowValue}">
+														<td>#{columnValue}</td>
+													</ui:repeat>
+												</tr>
+											</ui:repeat>
+										</tbody>
+									</table>
+								</h:panelGroup>
+							</div>
+						</h:panelGroup>
+					</p:tab>
+					<p:tab title="Check SQL Statement Execution Status">
+						<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Input')}</h3>
+						<div class="grid ui-fluid">
+							<div class="col-12">
+								<p:outputLabel for="statement-handle"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/StatementHandle')}" />
+							</div>
+							<h:panelGroup styleClass="col-8" layout="block">
+								<p:inputText id="statement-handle"
+									value="#{data.statementHandle}" />
+							</h:panelGroup>
+							<h:panelGroup styleClass="col-4 align-content-center text-left"
+								layout="block">
+								<p:commandButton styleClass="w-auto" id="check-status"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/CheckSQLStatementExecutionStatus')}"
+									actionListener="#{logic.checkStatus}"
+									update="status-checking-result" icon="pi pi-check" />
+							</h:panelGroup>
+							<br />
+							<h:panelGroup styleClass="grid ui-fluid" layout="block"
+								id="status-checking-result">
+								<h3 class="col-12">#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Result')}</h3>
+								<div class="col-12">
+									#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Response')}
+									<span class="font-bold">#{data.resultSet.message}</span>
+								</div>
+								<div class="ui-datatable ui-widget">
+									<h:panelGroup
+										id="datatable-sql-statement-execution-status-checking"
+										styleClass="col-12 ui-datatable-tablewrapper" layout="block">
+										<table class="table-height-500">
+											<thead>
+												<tr>
+													<ui:repeat var="column"
+														value="#{data.resultSet.resultSetMetaData.rowType}">
+														<th class="table-header-sticky">#{column.name}</th>
+													</ui:repeat>
+												</tr>
+											</thead>
+											<tbody class="ui-datatable-data ui-widget-content">
+												<ui:repeat var="rowValue" value="#{data.resultSet.data}">
+													<tr class="ui-widget-content">
+														<ui:repeat var="columnValue" value="#{rowValue}">
+															<td>#{columnValue}</td>
+														</ui:repeat>
+													</tr>
+												</ui:repeat>
+
+											</tbody>
+										</table>
+									</h:panelGroup>
+								</div>
+							</h:panelGroup>
+						</div>
+					</p:tab>
+					<p:tab title="Cancel SQL Statement Execution">
+						<h3>#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Input')}</h3>
+						<div class="grid ui-fluid">
+							<div class="col-12">
+								<p:outputLabel for="statement-handle-for-cancel"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/StatementHandle')}" />
+							</div>
+							<h:panelGroup styleClass="col-8" layout="block">
+								<p:inputText id="statement-handle-for-cancel"
+									value="#{data.statementHandleForCancelling}" />
+							</h:panelGroup>
+							<h:panelGroup styleClass="col-4 align-content-center text-left"
+								layout="block">
+								<p:commandButton styleClass="w-auto" id="cancel-sql-statement"
+									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/CancelSQLStatementExecution')}"
+									actionListener="#{logic.cancel}"
+									update="cancel-sql-statement-execution-result"
+									icon="pi pi-times" />
+							</h:panelGroup>
+							<br />
+							<h:panelGroup styleClass="grid ui-fluid" layout="block"
+								id="cancel-sql-statement-execution-result">
+								<h3 class="col-12">#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Result')}</h3>
+								<div class="col-12">
+									#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Response')}
+									<span class="font-bold">#{data.cancelStatus.message}</span>
+								</div>
+							</h:panelGroup>
+						</div>
+					</p:tab>
+				</p:tabView>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

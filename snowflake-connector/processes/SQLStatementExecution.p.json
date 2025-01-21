@@ -1,0 +1,200 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "19443E05C25250CD",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution.SQLStatementExecutionData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "executeSQLStatement(SQLStatementParams)",
+      "config" : {
+        "signature" : "executeSQLStatement",
+        "input" : {
+          "params" : [
+            { "name" : "sqlStatementParam", "type" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution.SQLStatementExecutionParamData", "desc" : "" }
+          ],
+          "map" : {
+            "out.param" : "param.sqlStatementParam"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "resultSet", "type" : "com.snowflakecomputing.org.account.client.ResultSet", "desc" : "" }
+          ],
+          "map" : {
+            "result.resultSet" : "in.resultSet"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 160, "y" : 312 },
+        "labelOffset" : { "x" : 17, "y" : -15 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 872, "y" : 312 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "Call Snowflake SQL Statement Execution API",
+      "config" : {
+        "method" : "POST",
+        "target" : {
+          "clientId" : "0bfd805c-83c8-4866-ac7c-0c3119cc72e0",
+          "path" : "/api/v2/statements",
+          "templateParams" : {
+            "ivy.var.snowflakeConnector.locatorUrl" : ""
+          },
+          "queryParams" : {
+            "requestId" : "org.apache.commons.lang3.StringUtils.isNotEmpty(in.param.requestId) ? java.util.UUID.fromString(in.param.requestId) : null",
+            "async" : "in.param.async",
+            "nullable" : "in.param.nullable"
+          }
+        },
+        "body" : {
+          "entity" : {
+            "type" : "com.snowflakecomputing.org.account.client.V2StatementsBody",
+            "map" : {
+              "param.bindings" : "in.param.bindings",
+              "param.database" : "in.param.database",
+              "param.role" : "in.param.role",
+              "param.schema" : "in.param.schema",
+              "param.statement" : "in.param.statement",
+              "param.timeout" : "in.param.timeout",
+              "param.warehouse" : "in.param.warehouse"
+            }
+          }
+        },
+        "response" : {
+          "entity" : {
+            "type" : "com.snowflakecomputing.org.account.client.ResultSet",
+            "map" : {
+              "out.resultSet" : "result"
+            }
+          },
+          "statusError" : ">> Ignore error"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 311 },
+        "size" : { "width" : 240, "height" : 63 }
+      },
+      "boundaries" : [ {
+          "id" : "f10",
+          "type" : "ErrorBoundaryEvent",
+          "visual" : {
+            "at" : { "x" : 656, "y" : 353 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          },
+          "connect" : [
+            { "id" : "f11", "to" : "f15" }
+          ]
+        } ],
+      "connect" : [
+        { "id" : "f4", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Generate JWT Token",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.snowflake.auth.JWTUtils;",
+            "in.jwtTokenGenerationCounter++;",
+            "String jwtToken  = JWTUtils.generateJWT();",
+            "ivy.var.set(\"snowflakeConnector.jwtToken\", jwtToken);",
+            "ivy.log.warn(jwtToken);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Alternative",
+      "name" : "Empty JWT Token?",
+      "config" : {
+        "conditions" : {
+          "f8" : "org.apache.commons.lang3.StringUtils.isBlank(ivy.var.snowflakeConnector_jwtToken)",
+          "f7" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 312 },
+        "labelOffset" : { "x" : 24, "y" : 40 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f3", "label" : {
+            "name" : "No",
+            "offset" : { "x" : -19, "y" : -10 }
+          }, "color" : "default" },
+        { "id" : "f8", "to" : "f5", "via" : [ { "x" : 336, "y" : 176 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 1.27,
+            "offset" : { "x" : -22, "y" : -18 }
+          } }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "Alternative",
+      "name" : "Invalid JWT Token?",
+      "config" : {
+        "conditions" : {
+          "f13" : "com.axonivy.connector.snowflake.constant.ResponseConstant.JWT_INVALID_CODE == in.resultSet.code && in.jwtTokenGenerationCounter < 1"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 768, "y" : 312 },
+        "labelOffset" : { "y" : 40 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f5", "via" : [ { "x" : 768, "y" : 176 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 0.66,
+            "offset" : { "x" : -15, "y" : -51 }
+          }, "color" : "default" },
+        { "id" : "f14", "to" : "f1", "label" : {
+            "name" : "No",
+            "segment" : 0.51,
+            "offset" : { "x" : -4, "y" : -10 }
+          } }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Set Request Timeout",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.resultSet.code" : "com.axonivy.connector.snowflake.constant.ResponseConstant.TIME_OUT_CODE",
+            "out.resultSet.message" : "com.axonivy.connector.snowflake.constant.ResponseConstant.TIME_OUT_MESSAGE"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 656, "y" : 448 },
+        "size" : { "width" : 152, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f1", "via" : [ { "x" : 872, "y" : 448 } ], "color" : "default" }
+      ]
+    } ]
+}

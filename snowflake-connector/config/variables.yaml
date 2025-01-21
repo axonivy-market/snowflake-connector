@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/variables.json
+Variables:
+  snowflakeConnector:
+    # Account locator Url
+    locatorUrl: ""
+    # Account locator
+    locator: ""
+    # Username is used for signing in to Snowflake
+    username: ""
+    # JWT Token is used for configuring key-pair authentication
+    jwtToken: ""
+    # The private key with unencrypted version
+    #[password]
+    privateKey: ${decrypt:}

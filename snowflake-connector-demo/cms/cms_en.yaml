@@ -1,0 +1,25 @@
+Dialogs:
+  com:
+    axonivy:
+      connector:
+        snowflake:
+          connector:
+            demo:
+              AccessToSnowflake:
+                AccessToSnowflakeDemo: Access To Snowflake Demo
+                Async: Async
+                CancelSQLStatementExecution: Cancel SQL Statement Execution
+                CheckSQLStatementExecutionStatus: Check SQL Statement Execution Status
+                Database: Database
+                ExecuteSQLStatement: Execute SQL Statement
+                Input: Input
+                Response: 'Response:'
+                Result: Result
+                Role: Role
+                SQLStatement: SQL Statement
+                Schema: Schema
+                SelectTable: Select table
+                SnowflakeSQLAPIDemo: Snowflake SQL API demo
+                StatementHandle: 'Statement Handle:'
+                Table: Table
+                Warehouse: Warehouse

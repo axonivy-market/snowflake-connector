@@ -1,7 +1,7 @@
 # MY-PRODUCT-NAME
 
-[![CI Build](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml)
+[![CI Build](https://github.com/axonivy-market/snowflake-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/snowflake-connector/actions/workflows/ci.yml)
 
-"YOUR SHORT DESCRIPTION GOES HERE"
+The Snowflake Connector provides to easily execute sql statement, check the execution's status and cancel the execution on cloud by integrating the [Snowflake SQL API](https://docs.snowflake.com/developer-guide/sql-api/index?_fsi=io7jNW4M&_fsi=io7jNW4M#limitations-of-the-sql-api).
 
-Read our [documentation](MY-PRODUCT-NAME-product/README.md).
+Read our [documentation](snowflake-connector-product/README.md).

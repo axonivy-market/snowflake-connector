@@ -1,0 +1,6 @@
+{
+  "code": "000900",
+  "message": "SQL compilation error:\nEmpty SQL statement.",
+  "sqlState": "42601",
+  "statementHandle": null
+}
