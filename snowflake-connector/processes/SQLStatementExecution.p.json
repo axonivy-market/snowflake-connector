@@ -115,8 +115,7 @@
             "import com.axonivy.connector.snowflake.auth.JWTUtils;",
             "in.jwtTokenGenerationCounter++;",
             "String jwtToken  = JWTUtils.generateJWT();",
-            "ivy.var.set(\"snowflakeConnector.jwtToken\", jwtToken);",
-            "ivy.log.warn(jwtToken);"
+            "ivy.var.set(\"snowflakeConnector.jwtToken\", jwtToken);"
           ]
         }
       },
