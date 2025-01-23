@@ -38,6 +38,8 @@ The result will be displayed on the result section:
 > [!NOTE]
 > You can verify the public key fingerprint by referencing [Verify the user’s public key fingerprint](https://docs.snowflake.com/en/user-guide/key-pair-auth#verify-the-user-s-public-key-fingerprint)
 7. Update your `variables.yaml`
+> [!NOTE]
+> The username must be matched to the username in the profile's Snowflake.
 
 ```
 @variables.yaml@
