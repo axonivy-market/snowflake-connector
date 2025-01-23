@@ -1,0 +1,22 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "AccessToSnowflakeData",
+  "namespace" : "com.axonivy.connector.snowflake.connector.demo.AccessToSnowflake",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "sqlStatementExecution",
+    "type" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution.SQLStatementExecutionData"
+  }, {
+    "name" : "statementHandle",
+    "type" : "String"
+  }, {
+    "name" : "resultSet",
+    "type" : "com.snowflakecomputing.org.account.client.ResultSet"
+  }, {
+    "name" : "cancelStatus",
+    "type" : "com.snowflakecomputing.org.account.client.CancelStatus"
+  }, {
+    "name" : "statementHandleForCancelling",
+    "type" : "String"
+  } ]
+}

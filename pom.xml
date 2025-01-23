@@ -1,10 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.axonivy.market</groupId><!-- your group id: e.g. com.axonivy.connector.<myconnector> or com.axonivy.utils.<myutil> -->
-  <name>my-product</name><!-- fill your product name -->
-  <artifactId>my-product-modules</artifactId><!-- fill your product name + a "-modules" postfix -->
-  <version>10.0.0-SNAPSHOT</version><!-- identicate your minimal compliant ivy version with the first 2 digits -->
+  <groupId>com.axonivy.connector.snowflake</groupId>
+  <name>snowflake-connector</name>
+  <artifactId>snowflake-connector-modules</artifactId>
+  <version>12.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
   <modules>
     <module>${project.name}</module>
@@ -14,7 +18,8 @@
   </modules>
 
   <scm>
-    <developerConnection>scm:git:https://github.com/axonivy-market/${project.name}.git</developerConnection>
+    <developerConnection>
+      scm:git:https://github.com/axonivy-market/${project.name}.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 

@@ -1,0 +1,22 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "SQLStatementExecutionStatusCheckingData",
+  "namespace" : "com.axonivy.connector.snowflake.connector.sqlstatementexecutionstatuschecking",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "statementHandle",
+    "type" : "String"
+  }, {
+    "name" : "resultSet",
+    "type" : "com.snowflakecomputing.org.account.client.ResultSet"
+  }, {
+    "name" : "jwtTokenGenerationCounter",
+    "type" : "Number"
+  }, {
+    "name" : "requestId",
+    "type" : "String"
+  }, {
+    "name" : "partition",
+    "type" : "Number"
+  } ]
+}

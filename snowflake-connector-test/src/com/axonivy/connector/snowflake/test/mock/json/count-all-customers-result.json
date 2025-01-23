@@ -1,0 +1,39 @@
+{
+    "resultSetMetaData": {
+        "numRows": 1,
+        "format": "jsonv2",
+        "partitionInfo": [
+            {
+                "rowCount": 1,
+                "uncompressedSize": 11
+            }
+        ],
+        "rowType": [
+            {
+                "name": "COUNT(*)",
+                "database": "",
+                "schema": "",
+                "table": "",
+                "nullable": false,
+                "length": null,
+                "type": "fixed",
+                "scale": 0,
+                "precision": 18,
+                "byteLength": null,
+                "collation": null
+            }
+        ]
+    },
+    "data": [
+        [
+            "1500000"
+        ]
+    ],
+    "code": "090001",
+    "statementStatusUrl": "/api/v2/statements/1a2b3c4d-0000-0000-0000-000000000000?requestId=1a2b3c4d-0000-0000-0000-000000000000",
+    "requestId": "1a2b3c4d-0000-0000-0000-000000000000",
+    "sqlState": "00000",
+    "statementHandle": "1a2b3c4d-0000-0000-0000-000000000000",
+    "message": "Statement executed successfully.",
+    "createdOn": 1737359636935
+}

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/rest-clients.json
+RestClients:
+  #The Snowflake SQL API is a REST API that you can use to access and update data in a Snowflake database. 
+  Snowflake SQL API:
+    UUID: 0bfd805c-83c8-4866-ac7c-0c3119cc72e0
+    Url: ${ivy.var.snowflakeConnector.locatorUrl}
+    Features:
+    - com.axonivy.connector.snowflake.auth.SnowflakeAuthFeature
+    - com.axonivy.connector.snowflake.auth.DataJsonFeature
+    Properties:
+      AUTH.JWTToken: ${ivy.var.snowflakeConnector.jwtToken}
+    OpenAPI:
+      SpecUrl: file:///C:/Users/phhung/Downloads/sqlapi.yaml
+      Namespace: com.snowflakecomputing.org.account.client
