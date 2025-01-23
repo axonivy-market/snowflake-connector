@@ -33,7 +33,11 @@ The result will be displayed on the result section:
 3. Go to the left menu Admin > Accounts to collect `locator` and `locator url` values
 ![get-locator](images/get-locator.png)
 4. Refer to [Generate the private key](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-the-private-key) to generate an unencrypted version.
-5. Adapt these values to your `variables.yaml`
+5. Refer to [Generate a public key](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-a-public-key) to generate the public key by referencing the private key.
+6. Refter to [Assign the public key](https://docs.snowflake.com/en/user-guide/key-pair-auth#assign-the-public-key-to-a-snowflake-user) to assign the public key to a Snowflake user
+> [!NOTE]
+> You can verify the public key fingerprint by referencing [Verify the user’s public key fingerprint](https://docs.snowflake.com/en/user-guide/key-pair-auth#verify-the-user-s-public-key-fingerprint)
+7. Update your `variables.yaml`
 
 ```
 @variables.yaml@

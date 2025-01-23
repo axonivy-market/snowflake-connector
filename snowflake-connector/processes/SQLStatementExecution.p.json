@@ -69,6 +69,7 @@
             "map" : {
               "param.bindings" : "in.param.bindings",
               "param.database" : "in.param.database",
+              "param.parameters" : "in.param.parameters",
               "param.role" : "in.param.role",
               "param.schema" : "in.param.schema",
               "param.statement" : "in.param.statement",

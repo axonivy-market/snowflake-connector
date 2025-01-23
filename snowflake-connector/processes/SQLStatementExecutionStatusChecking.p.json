@@ -58,8 +58,8 @@
             "ivy.var.snowflakeConnector.locatorUrl" : ""
           },
           "queryParams" : {
-            "requestId" : "",
-            "partition" : ""
+            "requestId" : "org.apache.commons.lang3.StringUtils.isNotBlank(in.requestId) ? java.util.UUID.fromString(in.requestId) : null",
+            "partition" : "in.partition"
           }
         },
         "response" : {

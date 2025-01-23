@@ -1,4 +1,4 @@
-# MY-PRODUCT-NAME
+# Snowflake Connector
 
 [![CI Build](https://github.com/axonivy-market/snowflake-connector/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/snowflake-connector/actions/workflows/ci.yml)
 

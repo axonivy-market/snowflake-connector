@@ -19,8 +19,11 @@
 							<h:panelGroup styleClass="col-4" layout="block">
 								<p:outputLabel for="database"
 									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Database')}" />
-								<p:selectOneMenu id="database"
+								<p:selectOneMenu id="database" editable="true"
 									value="#{data.sqlStatementExecution.param.database}">
+									<f:selectItem
+										itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SelectDatabase')}"
+										noSelectionOption="true" />
 									<f:selectItems value="#{accessToSnowflakeBean.databases}" />
 								</p:selectOneMenu>
 							</h:panelGroup>
@@ -28,8 +31,11 @@
 							<h:panelGroup styleClass="col-4" layout="block">
 								<p:outputLabel for="schema"
 									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Schema')}" />
-								<p:selectOneMenu id="schema"
+								<p:selectOneMenu id="schema" editable="true"
 									value="#{data.sqlStatementExecution.param.schema}">
+									<f:selectItem
+										itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SelectSchema')}"
+										noSelectionOption="true" />
 									<f:selectItems value="#{accessToSnowflakeBean.schemas}" />
 								</p:selectOneMenu>
 							</h:panelGroup>
@@ -37,7 +43,7 @@
 							<h:panelGroup styleClass="col-4" layout="block">
 								<p:outputLabel for="table"
 									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Table')}" />
-								<p:selectOneMenu id="table"
+								<p:selectOneMenu id="table" editable="true"
 									value="#{accessToSnowflakeBean.table}">
 									<f:selectItem
 										itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SelectTable')}"
@@ -52,8 +58,11 @@
 							<h:panelGroup styleClass="col-4" layout="block">
 								<p:outputLabel for="warehouse"
 									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Warehouse')}" />
-								<p:selectOneMenu id="warehouse"
+								<p:selectOneMenu id="warehouse" editable="true"
 									value="#{data.sqlStatementExecution.param.warehouse}">
+									<f:selectItem
+										itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SelectWarehouse')}"
+										noSelectionOption="true" />
 									<f:selectItems value="#{accessToSnowflakeBean.warehouses}" />
 								</p:selectOneMenu>
 							</h:panelGroup>
@@ -61,8 +70,11 @@
 							<h:panelGroup styleClass="col-4" layout="block">
 								<p:outputLabel for="role"
 									value="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/Role')}" />
-								<p:selectOneMenu id="role"
+								<p:selectOneMenu id="role" editable="true"
 									value="#{data.sqlStatementExecution.param.role}">
+									<f:selectItem
+										itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/connector/snowflake/connector/demo/AccessToSnowflake/SelectRole')}"
+										noSelectionOption="true" />
 									<f:selectItems value="#{accessToSnowflakeBean.roles}" />
 								</p:selectOneMenu>
 							</h:panelGroup>
