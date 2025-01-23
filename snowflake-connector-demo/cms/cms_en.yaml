@@ -18,11 +18,6 @@ Dialogs:
                 Role: Role
                 SQLStatement: SQL Statement
                 Schema: Schema
-                SelectDatabase: Select Role
-                SelectRole: Select Role
-                SelectSchema: Select Schema
-                SelectTable: Select Table
-                SelectWarehouse: Select Warehouse
                 SnowflakeSQLAPIDemo: Snowflake SQL API demo
                 StatementHandle: 'Statement Handle:'
                 Table: Table
