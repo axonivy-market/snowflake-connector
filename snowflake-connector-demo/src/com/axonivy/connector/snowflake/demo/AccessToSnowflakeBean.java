@@ -30,7 +30,7 @@ public class AccessToSnowflakeBean {
 		databases = new ArrayList<>();
 		databases.add("SNOWFLAKE_SAMPLE_DATA");
 		roles = new ArrayList<>();
-		roles.add("SYSADMIN");
+		roles.add("ACCOUNTADMIN");
 		warehouses = new ArrayList<>();
 		warehouses.add("COMPUTE_WH");
 	}

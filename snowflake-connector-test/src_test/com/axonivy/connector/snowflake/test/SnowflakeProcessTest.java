@@ -115,7 +115,7 @@ public class SnowflakeProcessTest {
     param.setDatabase("SNOWFLAKE_SAMPLE_DATA");
     param.setSchema("TPCH_SF10");
     param.setWarehouse("COMPUTE_WH");
-    param.setRole("SYSADMIN");
+    param.setRole("ACCOUNTADMIN");
     param.setAsync(isAsync);
     param.setBindings(new Object());
     return param;
