@@ -1,6 +1,6 @@
 # Snowflake SQL API
 
-Snowflake is a modern, cloud-based data platform that provides scalable and flexible data warehousing, enabling efficient storage, querying, and analysis of large volumes of structured and semi-structured data across multiple cloud providers, including AWS, Azure, and Google Cloud.
+Snowflake is a modern, cloud-based data platform that provides scalable and flexible data warehousing, enabling efficient storage, querying, and analysis of large volumes of structured and semi-structured data across multiple cloud providers, including AWS, Azure and Google Cloud.
 
 This connector:
 
