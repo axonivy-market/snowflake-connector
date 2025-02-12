@@ -4,6 +4,7 @@ RestClients:
   Snowflake SQL API:
     UUID: 0bfd805c-83c8-4866-ac7c-0c3119cc72e0
     Url: ${ivy.var.snowflakeConnector.locatorUrl}
+    Icon: res:/webContent/icons/logo.png
     Features:
     - com.axonivy.connector.snowflake.auth.SnowflakeAuthFeature
     - com.axonivy.connector.snowflake.auth.DataJsonFeature
