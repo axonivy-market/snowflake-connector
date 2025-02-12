@@ -1,0 +1,154 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1945D4C5228EF30A",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.connector.snowflake.connector.sqlstatementexecutionstatuschecking.SQLStatementExecutionStatusCheckingData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "checkSQLStatementStatus(String)",
+      "config" : {
+        "signature" : "checkSQLStatementStatus",
+        "input" : {
+          "params" : [
+            { "name" : "statementHandle", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.statementHandle" : "param.statementHandle"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "resultSet", "type" : "com.snowflakecomputing.org.account.client.ResultSet", "desc" : "" }
+          ],
+          "map" : {
+            "result.resultSet" : "in.resultSet"
+          }
+        }
+      },
+      "tags" : [
+        "connector"
+      ],
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 49, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 808, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "RestClientCall",
+      "name" : "Call Snowflake SQL Statement Execution Status Checking API",
+      "config" : {
+        "target" : {
+          "clientId" : "0bfd805c-83c8-4866-ac7c-0c3119cc72e0",
+          "path" : "/api/v2/statements/{statementHandle}",
+          "templateParams" : {
+            "statementHandle" : "java.util.UUID.fromString(in.statementHandle)",
+            "ivy.var.snowflakeConnector.locatorUrl" : ""
+          },
+          "queryParams" : {
+            "requestId" : "org.apache.commons.lang3.StringUtils.isNotBlank(in.requestId) ? java.util.UUID.fromString(in.requestId) : null",
+            "partition" : "in.partition"
+          }
+        },
+        "response" : {
+          "entity" : {
+            "type" : "com.snowflakecomputing.org.account.client.ResultSet",
+            "map" : {
+              "out.resultSet" : "result"
+            }
+          },
+          "clientError" : ">> Ignore error",
+          "statusError" : ">> Ignore error"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 504, "y" : 63 },
+        "size" : { "width" : 240, "height" : 63 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Generate JWT Token",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.connector.snowflake.auth.JWTUtils;",
+            "in.jwtTokenGenerationCounter++;",
+            "String jwtToken  = JWTUtils.generateJWT();",
+            "ivy.var.set(\"snowflakeConnector.jwtToken\", jwtToken);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 504, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Alternative",
+      "name" : "Empty JWT Token?",
+      "config" : {
+        "conditions" : {
+          "f8" : "org.apache.commons.lang3.StringUtils.isBlank(ivy.var.snowflakeConnector_jwtToken)",
+          "f7" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "labelOffset" : { "x" : 0, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f3", "label" : {
+            "name" : "No",
+            "offset" : { "x" : -7, "y" : 14 }
+          }, "color" : "default" },
+        { "id" : "f8", "to" : "f5", "via" : [ { "x" : 288, "y" : 296 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 0.88,
+            "offset" : { "x" : -15, "y" : -136 }
+          } }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "Alternative",
+      "name" : "Invalid JWT Token?",
+      "config" : {
+        "conditions" : {
+          "f11" : "com.axonivy.connector.snowflake.constant.ResponseConstant.JWT_INVALID_CODE == in.resultSet.code && in.jwtTokenGenerationCounter < 1",
+          "f10" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 64 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f1", "label" : {
+            "name" : "No",
+            "offset" : { "x" : -3, "y" : 14 }
+          }, "color" : "default" },
+        { "id" : "f11", "to" : "f5", "via" : [ { "x" : 720, "y" : 296 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 0.94,
+            "offset" : { "x" : -15, "y" : -172 }
+          } }
+      ]
+    } ]
+}

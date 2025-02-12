@@ -1,0 +1,10 @@
+.table-header-sticky {
+  position: sticky !important;
+  top: 0;
+}
+
+.table-height-500 {
+  height: 500px;
+  display: block;
+  overflow: auto;
+}

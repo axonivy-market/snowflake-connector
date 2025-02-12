@@ -1,0 +1,41 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "SQLStatementExecutionParamData",
+  "namespace" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "bindings",
+    "type" : "java.lang.Object"
+  }, {
+    "name" : "database",
+    "type" : "String"
+  }, {
+    "name" : "role",
+    "type" : "String"
+  }, {
+    "name" : "schema",
+    "type" : "String"
+  }, {
+    "name" : "warehouse",
+    "type" : "String"
+  }, {
+    "name" : "statement",
+    "type" : "String"
+  }, {
+    "name" : "timeout",
+    "type" : "java.lang.Long"
+  }, {
+    "name" : "parameters",
+    "type" : "com.snowflakecomputing.org.account.client.Apiv2statementsParameters"
+  }, {
+    "name" : "async",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "nullable",
+    "type" : "Boolean"
+  }, {
+    "name" : "requestId",
+    "type" : "String"
+  } ]
+}
