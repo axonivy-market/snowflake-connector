@@ -42,7 +42,8 @@ public class SnowflakeProcessTest {
     var sqlStatementExecutionResultObj = sqlStatementExecutionResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionResultObj instanceof ResultSet);
     ResultSet sqlStatementExecutionResultSet = (ResultSet) sqlStatementExecutionResultObj;
-    assertTrue(getPosibleReturnCodes(CommonConstant.EMPTY_SQL_STATEMENT_RETURN_CODE).contains(sqlStatementExecutionResultSet.getCode()));
+    assertTrue(getPosibleReturnCodes(CommonConstant.EMPTY_SQL_STATEMENT_RETURN_CODE)
+        .contains(sqlStatementExecutionResultSet.getCode()));
   }
 
   @TestTemplate
@@ -55,7 +56,8 @@ public class SnowflakeProcessTest {
     var sqlStatementExecutionResultObj = sqlStatementExecutionResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionResultObj instanceof ResultSet);
     ResultSet sqlStatementExecutionResultSet = (ResultSet) sqlStatementExecutionResultObj;
-    assertTrue(getPosibleReturnCodes(CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE).contains(sqlStatementExecutionResultSet.getCode()));
+    assertTrue(getPosibleReturnCodes(CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE)
+        .contains(sqlStatementExecutionResultSet.getCode()));
   }
 
   @TestTemplate
@@ -68,7 +70,8 @@ public class SnowflakeProcessTest {
     var sqlStatementExecutionResultObj = sqlStatementExecutionResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionResultObj instanceof ResultSet);
     ResultSet sqlStatementExecutionResultSet = (ResultSet) sqlStatementExecutionResultObj;
-    assertTrue(getPosibleReturnCodes(CommonConstant.IN_PROGRESS_RETURN_CODE).contains(sqlStatementExecutionResultSet.getCode()));
+    assertTrue(getPosibleReturnCodes(CommonConstant.IN_PROGRESS_RETURN_CODE)
+        .contains(sqlStatementExecutionResultSet.getCode()));
 
     ExecutionResult sqlStatementExecutionStatusResult = SnowflakeTestUtils
         .getSubProcessWithNameAndPath(client, CommonConstant.GET_SQL_STATEMENT_EXECUTION_STATUS_CHECKING_PROCESS_PATH,
@@ -78,7 +81,8 @@ public class SnowflakeProcessTest {
         sqlStatementExecutionStatusResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionStatusObj instanceof ResultSet);
     ResultSet sqlStatementExecutionStatus = (ResultSet) sqlStatementExecutionStatusObj;
-    assertTrue(getPosibleReturnCodes(CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE).contains(sqlStatementExecutionStatus.getCode()));
+    assertTrue(getPosibleReturnCodes(CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE)
+        .contains(sqlStatementExecutionStatus.getCode()));
   }
 
   @TestTemplate
@@ -92,7 +96,8 @@ public class SnowflakeProcessTest {
         sqlStatementExecutionStatusResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionStatusObj instanceof ResultSet);
     ResultSet sqlStatementExecutionStatus = (ResultSet) sqlStatementExecutionStatusObj;
-    assertTrue(getPosibleReturnCodes(CommonConstant.NOT_FOUND_RETURN_CODE).contains(sqlStatementExecutionStatus.getCode()));
+    assertTrue(
+        getPosibleReturnCodes(CommonConstant.NOT_FOUND_RETURN_CODE).contains(sqlStatementExecutionStatus.getCode()));
   }
 
   @TestTemplate
