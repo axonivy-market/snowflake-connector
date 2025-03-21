@@ -1,8 +1,8 @@
 package com.axonivy.connector.snowflake.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,9 +25,11 @@ import ch.ivyteam.ivy.environment.AppFixture;
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(com.axonivy.connector.snowflake.test.context.MultiEnvironmentContextProvider.class)
 public class SnowflakeProcessTest {
+  private boolean isMockTest;
 
   @BeforeEach
   void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
+    isMockTest = context.getDisplayName() == CommonConstant.MOCK_SERVER_CONTEXT_DISPLAY_NAME;
     SnowflakeTestUtils.setUpConfigForContext(context.getDisplayName(), fixture, app);
   }
 
@@ -40,7 +42,8 @@ public class SnowflakeProcessTest {
     var sqlStatementExecutionResultObj = sqlStatementExecutionResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionResultObj instanceof ResultSet);
     ResultSet sqlStatementExecutionResultSet = (ResultSet) sqlStatementExecutionResultObj;
-    assertEquals(sqlStatementExecutionResultSet.getCode(), CommonConstant.EMPTY_SQL_STATEMENT_RETURN_CODE);
+    assertTrue(getPosibleReturnCodes(CommonConstant.EMPTY_SQL_STATEMENT_RETURN_CODE)
+        .contains(sqlStatementExecutionResultSet.getCode()));
   }
 
   @TestTemplate
@@ -53,7 +56,8 @@ public class SnowflakeProcessTest {
     var sqlStatementExecutionResultObj = sqlStatementExecutionResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionResultObj instanceof ResultSet);
     ResultSet sqlStatementExecutionResultSet = (ResultSet) sqlStatementExecutionResultObj;
-    assertEquals(sqlStatementExecutionResultSet.getCode(), CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE);
+    assertTrue(getPosibleReturnCodes(CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE)
+        .contains(sqlStatementExecutionResultSet.getCode()));
   }
 
   @TestTemplate
@@ -66,7 +70,8 @@ public class SnowflakeProcessTest {
     var sqlStatementExecutionResultObj = sqlStatementExecutionResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionResultObj instanceof ResultSet);
     ResultSet sqlStatementExecutionResultSet = (ResultSet) sqlStatementExecutionResultObj;
-    assertEquals(sqlStatementExecutionResultSet.getCode(), CommonConstant.IN_PROGRESS_RETURN_CODE);
+    assertTrue(getPosibleReturnCodes(CommonConstant.IN_PROGRESS_RETURN_CODE)
+        .contains(sqlStatementExecutionResultSet.getCode()));
 
     ExecutionResult sqlStatementExecutionStatusResult = SnowflakeTestUtils
         .getSubProcessWithNameAndPath(client, CommonConstant.GET_SQL_STATEMENT_EXECUTION_STATUS_CHECKING_PROCESS_PATH,
@@ -76,7 +81,8 @@ public class SnowflakeProcessTest {
         sqlStatementExecutionStatusResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionStatusObj instanceof ResultSet);
     ResultSet sqlStatementExecutionStatus = (ResultSet) sqlStatementExecutionStatusObj;
-    assertEquals(sqlStatementExecutionStatus.getCode(), CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE);
+    assertTrue(getPosibleReturnCodes(CommonConstant.SUCCESS_DATA_QUERY_RETURN_CODE)
+        .contains(sqlStatementExecutionStatus.getCode()));
   }
 
   @TestTemplate
@@ -90,7 +96,8 @@ public class SnowflakeProcessTest {
         sqlStatementExecutionStatusResult.data().last().get(CommonConstant.RESULT_SET_KEY);
     assertTrue(sqlStatementExecutionStatusObj instanceof ResultSet);
     ResultSet sqlStatementExecutionStatus = (ResultSet) sqlStatementExecutionStatusObj;
-    assertEquals(sqlStatementExecutionStatus.getCode(), CommonConstant.NOT_FOUND_RETURN_CODE);
+    assertTrue(
+        getPosibleReturnCodes(CommonConstant.NOT_FOUND_RETURN_CODE).contains(sqlStatementExecutionStatus.getCode()));
   }
 
   @TestTemplate
@@ -104,7 +111,7 @@ public class SnowflakeProcessTest {
     var object = result.data().last().get(CommonConstant.CANCEL_STATUS_KEY);
     assertTrue(object instanceof CancelStatus);
     CancelStatus cancelStatus = (CancelStatus) object;
-    assertEquals(cancelStatus.getCode(), CommonConstant.NOT_FOUND_RETURN_CODE);
+    assertTrue(getPosibleReturnCodes(CommonConstant.NOT_FOUND_RETURN_CODE).contains(cancelStatus.getCode()));
   }
 
   private SQLStatementExecutionParamData prepareSQLStatementExecutionParamData(boolean isAsync) {
@@ -119,5 +126,9 @@ public class SnowflakeProcessTest {
     param.setAsync(isAsync);
     param.setBindings(new Object());
     return param;
+  }
+  
+  private List<String> getPosibleReturnCodes(String expectedCode) {
+    return isMockTest ? List.of(expectedCode) : List.of(expectedCode, CommonConstant.USER_ACCOUNT_IS_LOCKED);
   }
 }

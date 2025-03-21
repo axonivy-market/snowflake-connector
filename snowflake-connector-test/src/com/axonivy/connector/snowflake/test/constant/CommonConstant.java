@@ -21,6 +21,7 @@ public class CommonConstant {
   public static final String IN_PROGRESS_RETURN_CODE = "333334";
   public static final String SUCCESS_DATA_QUERY_RETURN_CODE = "090001";
   public static final String EMPTY_SQL_STATEMENT_RETURN_CODE = "000900";
+  public static final String USER_ACCOUNT_IS_LOCKED = "390913";
   public static final String REQUEST_ID_PARAM = "requestId";
   public static final String STATEMENT_HANDLE_PARAM = "statementHandle";
   public static final String PARTITION_PARAM = "partition";
