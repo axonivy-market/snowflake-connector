@@ -8,6 +8,7 @@ Variables:
     # Username is used for signing in to Snowflake
     username: ""
     # JWT Token is used for configuring key-pair authentication
+    #[password]
     jwtToken: ""
     # The private key with unencrypted version
     #[password]
