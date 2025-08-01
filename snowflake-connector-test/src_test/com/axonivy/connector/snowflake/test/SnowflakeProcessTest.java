@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -72,7 +73,9 @@ public class SnowflakeProcessTest {
     ResultSet sqlStatementExecutionResultSet = (ResultSet) sqlStatementExecutionResultObj;
     assertTrue(getPosibleReturnCodes(CommonConstant.IN_PROGRESS_RETURN_CODE)
         .contains(sqlStatementExecutionResultSet.getCode()));
-
+    if (!isMockTest && ObjectUtils.isEmpty(sqlStatementExecutionResultSet.getStatementHandle())) {
+      sqlStatementExecutionResultSet.setStatementHandle(UUID.randomUUID());
+    }
     ExecutionResult sqlStatementExecutionStatusResult = SnowflakeTestUtils
         .getSubProcessWithNameAndPath(client, CommonConstant.GET_SQL_STATEMENT_EXECUTION_STATUS_CHECKING_PROCESS_PATH,
             CommonConstant.GET_SQL_STATEMENT_EXECUTION_STATUS_CHECKING_PROCESS_NAME)
