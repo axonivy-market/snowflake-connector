@@ -14,5 +14,3 @@ permissions:
 jobs:
   build:
     uses: axonivy-market/github-workflows/.github/workflows/dev.yml@v6
-    secrets:
-      mvnArgs: -Dsnowflake.locatorUrl=${{ secrets.LOCATOR_URL }} -Dsnowflake.locator=${{ secrets.LOCATOR }} -Dsnowflake.username=${{ secrets.USERNAME }} -Dsnowflake.privateKey=${{ secrets.PRIVATE_KEY }}
