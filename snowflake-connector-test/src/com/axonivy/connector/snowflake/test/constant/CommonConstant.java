@@ -31,4 +31,6 @@ public class CommonConstant {
   public static final String COUNT_ALL_CUSTOMERS_JSON_FILE_PATH = "json/count-all-customers-result.json";
   public static final String IN_PROGRESS_JSON_FILE_PATH = "json/in-progress-result.json";
   public static final String EMPTY_SQL_STATEMENT_JSON_FILE_PATH = "json/empty-sql-statement.json";
+  public static final String END_TO_END_TESTING_ENVIRONMENT_KEY = "testEnvironment";
+  public static final String END_TO_END_TESTING_ENVIRONMENT_VALUE = "E2E";
 }
