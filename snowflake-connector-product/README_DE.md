@@ -1,63 +1,69 @@
-# Schneeflocke SQL API
+# Snowflake SQL API
 
-Schneeflocke ist ein modernes, Wolke-basisbezogener #Daten Bahnsteig versieht
-jener scalable und #flexibel #Daten warehousing, aktivierend leistungsstarken
-Speicher, #abfragen, und Auswertung von groß Inhalte von #gegliedert und
-Halbfinale-#gegliedert #Daten über mehrfach Wolke Provider, #eingerechnet AWS,
-Azur und #Google Wolke.
+Snowflake ist eine moderne, cloudbasierte Datenplattform, die skalierbares und
+flexibles Data Warehousing bietet und eine effiziente Speicherung, Abfrage und
+Analyse großer Mengen strukturierter und semistrukturierter Daten über mehrere
+Cloud-Anbieter hinweg ermöglicht, darunter AWS, Azure und Google Cloud.
 
-Dieser Anschluss:
+Dieser Konnektor:
 
-- Unterstützt du mit eine Demo Ausführung zu heruntersetzen eure Integration
-  Anstrengung.
-- Gibt du volle Kraft zu die [Schneeflocke SQL
+- unterstützt Sie mit einer Demo-Implementierung, um Ihren Integrationsaufwand
+  zu reduzieren.
+- gibt Ihnen die volle Kontrolle über die [Snowflake SQL
   API](https://docs.snowflake.com/developer-guide/sql-api/index?_fsi=io7jNW4M&_fsi=io7jNW4M#limitations-of-the-sql-api).
-- Erlaub dir zu exekutieren SQL Angabe auf die SchneeflockeDatenbanken.
-- Erlaub dir zu überprüfen SQL Angabe Exekution Zustand auf die
-  SchneeflockeDatenbanken.
-- Erlaub dir zu streichen SQL Angabe Exekution auf die SchneeflockeDatenbanken.
+- Ermöglicht Ihnen die Ausführung von SQL-Anweisungen in den Datenbanken von
+  Snowflake.
+- Ermöglicht Ihnen die Überprüfung des Ausführungsstatus von SQL-Anweisungen in
+  den Datenbanken von Snowflake.
+- Ermöglicht Ihnen, die Ausführung von SQL-Anweisungen in den
+  Snowflake-Datenbanken abzubrechen.
 
 ## Demo
 
-1. Starte den Arbeitsgang `AccessToSnowflakeDemo/startDemo.ivp`
-2. #Einlesen das SQL Angabe und Klick auf dem Knopf `Exekutiert SQL Angabe` an
-   dem Deckel `Exekutiert SQL Angabe` Das Resultat will sein gezeigt auf die
-   Resultat Sektion:
-- Mit async Anfrage:
-  ![async-#Abfragen](images/execute-sql-statement-with-async.png)
-- Wihtout async Anfrage:
-  ![Nicht-async-#abfragen](images/execute-sql-statement-without-async.png)
-3. #Einlesen den Angabe Henkel und klick auf dem Knopf `Überprüft SQL Angabe
-   Exekution Zustand` an dem Deckel `Überprüft SQL Angabe Exekution Zustand` Das
-   Resultat will sein gezeigt auf die Resultat Sektion:
-   ![Kontrolle-sql-Angabe-Exekution-Zustand](images/check-sql-statement-execution-status.png)
-4. #Einlesen den Angabe Henkel und klick auf dem Knopf `Streicht SQL Angabe
-   Exekution` an dem Deckel `Streicht SQL Angabe Exekution` Das Resultat will
-   sein gezeigt auf die Resultat Sektion:
-   ![Streichen-sql-Angabe-Exekution](images/cancel-sql-statement-execution.png)
+1. Starten Sie den Prozess „ `AccessToSnowflakeDemo/startDemo.ivp”.`
+2. Geben Sie die SQL-Anweisung ein und klicken Sie auf die Schaltfläche „ `“
+   (SQL-Anweisung ausführen) „Execute SQL Statement“ (SQL-Anweisung ausführen)
+   „` “ (SQL-Anweisung ausführen) auf der Registerkarte „ `“ (SQL-Anweisung
+   ausführen) „` “ (SQL-Anweisung ausführen) Das Ergebnis wird im
+   Ergebnisbereich angezeigt:
+- Mit asynchroner Abfrage:
+  ![async-query](images/execute-sql-statement-with-async.png)
+- Ohne asynchrone Abfrage:
+  ![non-async-query](images/execute-sql-statement-without-async.png)
+3. Geben Sie den Statement-Handle ein und klicken Sie auf die Schaltfläche „ `“
+   (SQL-Statement-Ausführungsstatus überprüfen).` auf der Registerkarte „ `“
+   (SQL-Statement-Ausführungsstatus überprüfen).` Das Ergebnis wird im
+   Ergebnisbereich angezeigt:
+   ![check-sql-statement-execution-status](images/check-sql-statement-execution-status.png)
+4. Geben Sie den Statement-Handle ein und klicken Sie auf die Schaltfläche „ `“
+   (SQL-Anweisung ausführen). „Cancel SQL Statement Execution“ (SQL-Anweisung
+   abbrechen)` auf der Registerkarte „ `“ (SQL-Anweisung abbrechen)` Das
+   Ergebnis wird im Ergebnisbereich angezeigt:
+   ![cancel-sql-statement-execution](images/cancel-sql-statement-execution.png)
 
 ## Einrichtung
 
-1. Register [Schneeflocke Konto](https://signup.snowflake.com)
-2. Indiz herein zu Schneeflocke
-3. Geh auf der linken Seite Speisekarte Admin > Kontos/Konti/Konten zu
-   einsammeln `Zeiger` und `Zeiger url` Werte
-   ![Bekommen-Zeiger](images/get-locator.png)
-4. Übergib zu [Generiert den persönlichen
-   Schlüssel](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-the-private-key)
-   zu generieren einen unencrypted Version.
-5. Übergib zu [Generiert einen öffentlichen
-   Schlüssel](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-a-public-key)
-   zu generieren mal den öffentlichen Schlüssel #referenzieren den persönlichen
-   Schlüssel.
-6. Refter Zu [Weist zu den öffentlichen
-   Schlüssel](https://docs.snowflake.com/en/user-guide/key-pair-auth#assign-the-public-key-to-a-snowflake-user)
-   zu zuweisen der öffentliche Schlüssel zu einen Schneeflocke Nutzer
-> [!BEACHTE] du kannst den öffentlichen Schlüssel Fingerabdruck überprüfen mal
-> #referenzieren [Überprüft den Nutzers öffentlichen Schlüssel
-> Fingerabdruck](https://docs.snowflake.com/en/user-guide/key-pair-auth#verify-the-user-s-public-key-fingerprint)
-> 7. Verbesser eure `Variablen.yaml` [!BEACHTE] Den Benutzernamen muss sein
-> gepasst zu dem Benutzernamen in das ProfilsSchneeflocke.
+1. Registrieren Sie sich für ein [Snowflake-Konto](https://signup.snowflake.com)
+2. Melden Sie sich bei Snowflake an.
+3. Gehen Sie im linken Menü zu „Admin > Accounts“, um die Werte für „ `“
+   (Lokalisierungs-URL)` und „ `“ (Lokalisierungs-URL)` zu erfassen.
+   ![get-locator](images/get-locator.png)
+4. Siehe [Privaten Schlüssel
+   generieren](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-the-private-key),
+   um eine unverschlüsselte Version zu generieren.
+5. Siehe [Öffentlichen Schlüssel
+   generieren](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-a-public-key),
+   um den öffentlichen Schlüssel unter Verwendung des privaten Schlüssels zu
+   generieren.
+6. Siehe [Zuweisen des öffentlichen
+   Schlüssels](https://docs.snowflake.com/en/user-guide/key-pair-auth#assign-the-public-key-to-a-snowflake-user),
+   um den öffentlichen Schlüssel einem Snowflake-Benutzer zuzuweisen.
+> [!HINWEIS] Sie können den Fingerabdruck des öffentlichen Schlüssels
+> überprüfen, indem Sie [den Fingerabdruck des öffentlichen Schlüssels des
+> Benutzers
+> überprüfen](https://docs.snowflake.com/en/user-guide/key-pair-auth#verify-the-user-s-public-key-fingerprint)
+> 7. Aktualisieren Sie Ihre `variables.yaml` [!HINWEIS] Der Benutzername muss
+> mit dem Benutzernamen im Snowflake-Profil übereinstimmen.
 
 ```
 @variables.yaml@
