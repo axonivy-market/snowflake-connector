@@ -41,7 +41,7 @@ Dieser Konnektor:
    Ergebnis wird im Ergebnisbereich angezeigt:
    ![cancel-sql-statement-execution](images/cancel-sql-statement-execution.png)
 
-## Einrichtung
+## Setup
 
 1. Registrieren Sie sich für ein [Snowflake-Konto](https://signup.snowflake.com)
 2. Melden Sie sich bei Snowflake an.
