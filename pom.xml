@@ -11,15 +11,15 @@
   </properties>
 
   <modules>
-    <module>${project.name}</module>
-    <module>${project.name}-demo</module>
-    <module>${project.name}-test</module>
-    <module>${project.name}-product</module>
+    <module>snowflake-connector</module>
+    <module>snowflake-connector-demo</module>
+    <module>snowflake-connector-test</module>
+    <module>snowflake-connector-product</module>
   </modules>
 
   <scm>
     <developerConnection>
-      scm:git:https://github.com/axonivy-market/${project.name}.git</developerConnection>
+      scm:git:https://github.com/axonivy-market/snowflake-connector.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
