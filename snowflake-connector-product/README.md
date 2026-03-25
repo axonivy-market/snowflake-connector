@@ -17,7 +17,7 @@ This connector:
 The result will be displayed on the result section:
 - With async query:
 ![async-query](images/execute-sql-statement-with-async.png)
-- Wihtout async query:
+- Without async query:
 ![non-async-query](images/execute-sql-statement-without-async.png)
 3. Input the statement handle and click on the button `Check SQL Statement Execution Status` at the tab `Check SQL Statement Execution Status`
 The result will be displayed on the result section:
@@ -34,7 +34,7 @@ The result will be displayed on the result section:
 ![get-locator](images/get-locator.png)
 4. Refer to [Generate the private key](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-the-private-key) to generate an unencrypted version.
 5. Refer to [Generate a public key](https://docs.snowflake.com/en/user-guide/key-pair-auth#generate-a-public-key) to generate the public key by referencing the private key.
-6. Refter to [Assign the public key](https://docs.snowflake.com/en/user-guide/key-pair-auth#assign-the-public-key-to-a-snowflake-user) to assign the public key to a Snowflake user
+6. Refer to [Assign the public key](https://docs.snowflake.com/en/user-guide/key-pair-auth#assign-the-public-key-to-a-snowflake-user) to assign the public key to a Snowflake user
 > [!NOTE]
 > You can verify the public key fingerprint by referencing [Verify the user’s public key fingerprint](https://docs.snowflake.com/en/user-guide/key-pair-auth#verify-the-user-s-public-key-fingerprint)
 7. Update your `variables.yaml`
