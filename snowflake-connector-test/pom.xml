@@ -15,6 +15,17 @@
   <dependencies>
     <dependency>
       <groupId>com.axonivy.connector.snowflake</groupId>
+      <artifactId>snowflake-connector-openapi</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-runtime</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.connector.snowflake</groupId>
       <artifactId>snowflake-connector</artifactId>
       <version>${project.version}</version>
       <type>iar</type>

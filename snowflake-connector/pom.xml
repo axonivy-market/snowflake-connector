@@ -14,6 +14,16 @@
   <packaging>iar</packaging>
   <dependencies>
     <dependency>
+      <groupId>com.axonivy.connector.snowflake</groupId>
+      <artifactId>snowflake-connector-openapi</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>
       <version>4.5.2</version>

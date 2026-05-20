@@ -11,6 +11,7 @@
   </properties>
 
   <modules>
+    <module>snowflake-connector-openapi</module>
     <module>snowflake-connector</module>
     <module>snowflake-connector-demo</module>
     <module>snowflake-connector-test</module>
