@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.connector.snowflake</groupId>
   <artifactId>snowflake-connector-openapi</artifactId>
-  <version>13.2.0-SNAPSHOT</version>
+  <version>13.2.1-SNAPSHOT</version>
 
   <properties>
     <maven.compiler.release>21</maven.compiler.release>
@@ -61,7 +59,7 @@
               <inputSpec>${project.basedir}/sqlapi.yaml</inputSpec>
               <generatorName>java</generatorName>
               <globalProperties>
-                <models/>
+                <models />
                 <modelDocs>false</modelDocs>
                 <modelTests>false</modelTests>
                 <apis>false</apis>
