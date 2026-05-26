@@ -1,22 +1,24 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "SQLStatementExecutionCancellingData",
   "namespace" : "com.axonivy.connector.snowflake.connector.sqlstatementexecutioncancelling",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "statementHandle",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "jwtTokenGenerationCounter",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
     "name" : "requestId",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "partition",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   }, {
     "name" : "cancelStatus",
-    "type" : "com.snowflakecomputing.org.account.client.CancelStatus"
+    "type" : "com.snowflakecomputing.org.account.client.CancelStatus",
+    "modifiers" : [ ]
   } ]
 }
