@@ -1,16 +1,18 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "SQLStatementExecutionData",
   "namespace" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "resultSet",
-    "type" : "com.snowflakecomputing.org.account.client.ResultSet"
+    "type" : "com.snowflakecomputing.org.account.client.ResultSet",
+    "modifiers" : [ ]
   }, {
     "name" : "param",
-    "type" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution.SQLStatementExecutionParamData"
+    "type" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution.SQLStatementExecutionParamData",
+    "modifiers" : [ ]
   }, {
     "name" : "jwtTokenGenerationCounter",
-    "type" : "Number"
+    "type" : "Number",
+    "modifiers" : [ ]
   } ]
 }

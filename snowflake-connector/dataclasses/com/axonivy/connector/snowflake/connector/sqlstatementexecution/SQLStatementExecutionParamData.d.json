@@ -1,41 +1,43 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "SQLStatementExecutionParamData",
   "namespace" : "com.axonivy.connector.snowflake.connector.sqlstatementexecution",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "bindings",
-    "type" : "java.lang.Object"
+    "type" : "java.lang.Object",
+    "modifiers" : [ ]
   }, {
     "name" : "database",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "role",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "schema",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "warehouse",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "statement",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "timeout",
-    "type" : "java.lang.Long"
+    "type" : "java.lang.Long",
+    "modifiers" : [ ]
   }, {
     "name" : "parameters",
-    "type" : "com.snowflakecomputing.org.account.client.Apiv2statementsParameters"
+    "type" : "com.snowflakecomputing.org.account.client.Apiv2statementsParameters",
+    "modifiers" : [ ]
   }, {
     "name" : "async",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "nullable",
     "type" : "Boolean"
   }, {
+    "name" : "nullable",
+    "type" : "Boolean",
+    "modifiers" : [ ]
+  }, {
     "name" : "requestId",
-    "type" : "String"
+    "modifiers" : [ ]
   } ]
 }
