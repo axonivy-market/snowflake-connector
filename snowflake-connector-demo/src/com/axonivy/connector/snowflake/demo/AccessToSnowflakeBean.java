@@ -3,10 +3,12 @@ package com.axonivy.connector.snowflake.demo;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class AccessToSnowflakeBean {
 	private final static String SELECT_STATEMENT_FORMAT = "Select * from %s";
 	private List<String> schemas;
