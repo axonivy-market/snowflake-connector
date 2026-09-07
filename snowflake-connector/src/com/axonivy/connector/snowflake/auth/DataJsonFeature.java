@@ -3,11 +3,9 @@ package com.axonivy.connector.snowflake.auth;
 import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.core.FeatureContext;
 import jakarta.ws.rs.core.MediaType;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.jakarta.rs.json.JacksonJsonProvider;
-
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.jakarta.rs.json.JacksonJsonProvider;
 import ch.ivyteam.ivy.rest.client.mapper.JsonFeature;
 
 public class DataJsonFeature extends JsonFeature {
@@ -22,10 +20,9 @@ public class DataJsonFeature extends JsonFeature {
 
   public static class JaxRsClientJson extends JacksonJsonProvider {
     @Override
-    public ObjectMapper locateMapper(Class<?> type, MediaType mediaType) {
-      ObjectMapper mapper = super.locateMapper(type, mediaType);
-      mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-      return mapper;
+    public JsonMapper locateMapper(Class<?> type, MediaType mediaType) {
+      configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+      return super.locateMapper(type, mediaType);
     }
   }
 }
