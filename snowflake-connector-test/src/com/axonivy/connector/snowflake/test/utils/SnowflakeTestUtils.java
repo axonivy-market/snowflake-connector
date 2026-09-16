@@ -8,15 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.connector.snowflake.test.constant.CommonConstant;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.engine.client.sub.SubRequestBuilder;
 import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.rest.client.RestClient;
-import ch.ivyteam.ivy.rest.client.RestClients;
-import ch.ivyteam.ivy.rest.client.security.CsrfHeaderFeature;
 
 public class SnowflakeTestUtils {
   private static final String FEATURE_SUFFIX = ".Features";
@@ -34,6 +30,7 @@ public class SnowflakeTestUtils {
   private static final String SNOWFLAKE_CONNECTOR_PREFIX = "snowflakeConnector.";
   private static final String DATA_JSON_FEATURE = "com.axonivy.connector.snowflake.auth.DataJsonFeature";
   private static final String SNOWFLAKE_AUTH_FEATURE = "com.axonivy.connector.snowflake.auth.SnowflakeAuthFeature";
+  private static final String CSRF_HEADER_FEATURE = "ch.ivyteam.ivy.rest.client.security.CsrfHeaderFeature";
   private static final String LOCAL_CREDENTIALS_FILE_PATH = "credentials.properties";
 
  /**
@@ -47,7 +44,10 @@ public class SnowflakeTestUtils {
 
   public static void setUpConfigForMockServer(AppFixture fixture) {
     fixture.config(REST_CLIENT_PREFIX + CommonConstant.SNOWFLAKE_REST_CLIENT_NAME + FEATURE_SUFFIX,
-        List.of(DATA_JSON_FEATURE, SNOWFLAKE_AUTH_FEATURE));
+      List.of(DATA_JSON_FEATURE, SNOWFLAKE_AUTH_FEATURE, CSRF_HEADER_FEATURE));
+    fixture.config(REST_CLIENT_PREFIX + CommonConstant.SNOWFLAKE_REST_CLIENT_NAME + ".Url", LOCATOR_URL_MOCK);
+    fixture.config(REST_CLIENT_PREFIX + CommonConstant.SNOWFLAKE_REST_CLIENT_NAME + ".Properties."
+      + JWT_TOKEN_AUTH_PROPERTY, JWT_TOKEN_MOCK);
 
     fixture.var(SNOWFLAKE_CONNECTOR_PREFIX + LOCATOR_URL_KEY, LOCATOR_URL_MOCK);
     fixture.var(SNOWFLAKE_CONNECTOR_PREFIX + JWT_TOKEN, JWT_TOKEN_MOCK);
@@ -56,32 +56,17 @@ public class SnowflakeTestUtils {
     fixture.var(SNOWFLAKE_CONNECTOR_PREFIX + PRIVATE_KEY_KEY, PRIVATE_KEY_MOCK);
   }
 
-  public static void setUpConfigForContext(String contextName, AppFixture fixture, IApplication app) {
+  public static void setUpConfigForContext(String contextName, AppFixture fixture) {
     switch (contextName) {
       case CommonConstant.REAL_CALL_CONTEXT_DISPLAY_NAME:
         setUpConfigForApiTest(fixture);
-        removeClientForMockPostMethod(app);
         break;
       case CommonConstant.MOCK_SERVER_CONTEXT_DISPLAY_NAME:
         setUpConfigForMockServer(fixture);
-        addClientForMockPostMethod(app);
         break;
       default:
         break;
     }
-  }
-
-  private static void addClientForMockPostMethod(IApplication app) {
-    RestClients clients = RestClients.of(app);
-    RestClient snowflakeClient = RestClients.of(app).find(CommonConstant.SNOWFLAKE_REST_CLIENT_NAME);
-    var testClient = snowflakeClient.toBuilder().feature(CsrfHeaderFeature.class.getName())
-        .property(SnowflakeTestUtils.JWT_TOKEN_AUTH_PROPERTY, SnowflakeTestUtils.JWT_TOKEN_MOCK).toRestClient();
-    clients.set(testClient);
-  }
-
-  private static void removeClientForMockPostMethod(IApplication app) {
-    RestClients clients = RestClients.of(app);
-    clients.remove(CommonConstant.SNOWFLAKE_REST_CLIENT_NAME);
   }
 
   public static void setUpConfigForApiTest(AppFixture fixture) {
@@ -111,6 +96,11 @@ public class SnowflakeTestUtils {
     fixture.var(SNOWFLAKE_CONNECTOR_PREFIX + LOCATOR_KEY, locator);
     fixture.var(SNOWFLAKE_CONNECTOR_PREFIX + USERNAME_KEY, username);
     fixture.var(SNOWFLAKE_CONNECTOR_PREFIX + PRIVATE_KEY_KEY, privateKey);
+    fixture.config(REST_CLIENT_PREFIX + CommonConstant.SNOWFLAKE_REST_CLIENT_NAME + ".Url", locatorUrl);
+    fixture.config(REST_CLIENT_PREFIX + CommonConstant.SNOWFLAKE_REST_CLIENT_NAME + FEATURE_SUFFIX,
+      List.of(DATA_JSON_FEATURE, SNOWFLAKE_AUTH_FEATURE));
+    fixture.config(REST_CLIENT_PREFIX + CommonConstant.SNOWFLAKE_REST_CLIENT_NAME + ".Properties."
+      + JWT_TOKEN_AUTH_PROPERTY, JWT_TOKEN_MOCK);
   }
 
   public static SubRequestBuilder getSubProcessWithNameAndPath(BpmClient client, String subProcessPath,

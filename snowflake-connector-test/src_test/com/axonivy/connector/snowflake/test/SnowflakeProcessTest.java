@@ -17,7 +17,6 @@ import com.axonivy.connector.snowflake.test.utils.SnowflakeTestUtils;
 import com.snowflakecomputing.org.account.client.CancelStatus;
 import com.snowflakecomputing.org.account.client.ResultSet;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
@@ -29,9 +28,9 @@ public class SnowflakeProcessTest {
   private boolean isMockTest;
 
   @BeforeEach
-  void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
+    void beforeEach(ExtensionContext context, AppFixture fixture) {
     isMockTest = context.getDisplayName() == CommonConstant.MOCK_SERVER_CONTEXT_DISPLAY_NAME;
-    SnowflakeTestUtils.setUpConfigForContext(context.getDisplayName(), fixture, app);
+        SnowflakeTestUtils.setUpConfigForContext(context.getDisplayName(), fixture);
   }
 
   @TestTemplate
