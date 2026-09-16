@@ -26,7 +26,7 @@
     <dependency>
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>
-      <version>4.5.2</version>
+      <version>4.6.0</version>
       <exclusions>
         <exclusion>
           <groupId>com.fasterxml.jackson.core</groupId>
@@ -37,6 +37,10 @@
     <dependency>
       <groupId>com.axonivy.ivy.api</groupId>
       <artifactId>ivy-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.axonivy.ivy.api.extension</groupId>
+      <artifactId>ivy-rest-jersey-extension-api</artifactId>
     </dependency>
   </dependencies>
   <repositories>
